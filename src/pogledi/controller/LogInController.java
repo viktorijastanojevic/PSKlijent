@@ -24,8 +24,7 @@ public class LogInController {
 
     public void otvoriFormu() {
         frmLogIn.setVisible(true);
-       // frmLogIn.getTxtEmail().setText("vanja@gmail.com");
-        //frmLogIn.getTxtPassword().setText("vanja");
+       
     }
     
 
@@ -48,7 +47,7 @@ public class LogInController {
                     Zaposleni z = Komunikacija.getInstanca().logIn(korisnickoIme,sifra);
                    // Cordinator.getInstanca().dodajParam("korisnik", k);
                     JOptionPane.showMessageDialog(frmLogIn, "Prijava na sistem uspesna","Uspeh",JOptionPane.INFORMATION_MESSAGE);
-                    //Cordinator.getInstanca().otvoriGlavnuFormu();
+                    Cordinator.getInstanca().otvoriGlavnuFormu();
                     frmLogIn.dispose();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(frmLogIn, "Sistem ne moze da pronadje trazeni nalog", "Greska", JOptionPane.ERROR_MESSAGE);

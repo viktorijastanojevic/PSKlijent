@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.List;
 import komunikacija.util.Operacije;
+import model.Kandidat;
 import model.Zaposleni;
 /**
  *
@@ -50,5 +51,19 @@ public class Komunikacija {
         } else {
             throw odgovor.getGreska();
     }
+    }
+
+    public List<Kandidat> ucitajKandidate() throws Exception {
+Zahtev zahtev = new Zahtev(Operacije.UCITAJ_KANDIDATE, null);
+        System.out.println(zahtev);
+        posiljalac.posalji(zahtev);
+
+        Odgovor odgovor = (Odgovor) primalac.primi();
+         System.out.println(odgovor);
+        if (odgovor.getGreska() == null) {
+            return (List<Kandidat>) odgovor.getPodatak();
+        } else {
+            throw odgovor.getGreska();
+        }
     }
 }
