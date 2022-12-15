@@ -4,14 +4,17 @@
  */
 package pogledi.cordinator;
 
+import forme.FormaKandidat;
 import forme.FormaPrikaziKandidate;
 import forme.GlavnaForma;
 import forme.LoginForma;
 import java.util.HashMap;
 import java.util.Map;
 import pogledi.controller.GlavniController;
+import pogledi.controller.KandidatController;
 import pogledi.controller.LogInController;
 import pogledi.controller.PrikaziKandidateController;
+import pogledi.forme.util.FormaMod;
 
 /**
  *
@@ -21,6 +24,7 @@ public class Cordinator {
     private static Cordinator instanca;
     private PrikaziKandidateController pkController;
     private GlavniController glavniController;
+    private KandidatController dkController;
 
     private Map<String, Object> parametri;
     private Cordinator() {
@@ -55,5 +59,10 @@ public class Cordinator {
     public void otvoriGlavnuFormu() throws Exception {
         glavniController=new GlavniController(new GlavnaForma());
         glavniController.otvoriFormu();
+    }
+
+    public void otvoriFormuDodajKandidata() {
+        dkController=new KandidatController(new FormaKandidat());
+        dkController.otvoriFormu(FormaMod.DODAJ);
     }
     }

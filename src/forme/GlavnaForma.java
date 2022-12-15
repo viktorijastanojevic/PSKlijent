@@ -76,7 +76,7 @@ public class GlavnaForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemDodajKandidatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDodajKandidatActionPerformed
-        // TODO add your handling code here:
+       Cordinator.getInstanca().otvoriFormuDodajKandidata();
     }//GEN-LAST:event_jMenuItemDodajKandidatActionPerformed
 
     private void jMenuItemPregledKandidatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPregledKandidatActionPerformed

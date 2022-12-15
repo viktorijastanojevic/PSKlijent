@@ -66,4 +66,18 @@ Zahtev zahtev = new Zahtev(Operacije.UCITAJ_KANDIDATE, null);
             throw odgovor.getGreska();
         }
     }
+
+    public void ubaci(Kandidat kandidat) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacije.ZAPAMTI_KANDIDATA, kandidat);
+        System.out.println(zahtev);
+        posiljalac.posalji(zahtev);
+
+        Odgovor odgovor = (Odgovor) primalac.primi();
+        System.out.println(odgovor);
+        if (odgovor.getGreska() == null) {
+            return;
+        } else {
+            throw odgovor.getGreska();
+        }
+    }
 }
