@@ -4,6 +4,7 @@
  */
 package forme;
 
+import java.awt.event.ActionListener;
 import javax.swing.JTable;
 
 /**
@@ -19,9 +20,11 @@ public class FormaPrikaziKandidate extends javax.swing.JFrame {
         initComponents();
     }
 
-    public JTable getjTable1() {
-        return jTable1;
+    public JTable getjTableKandidati() {
+        return jTableKandidati;
     }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,11 +36,12 @@ public class FormaPrikaziKandidate extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableKandidati = new javax.swing.JTable();
+        jButtonObrisi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableKandidati.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -48,23 +52,32 @@ public class FormaPrikaziKandidate extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableKandidati);
+
+        jButtonObrisi.setText("Obrisi");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jButtonObrisi)))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addComponent(jButtonObrisi)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,7 +119,12 @@ public class FormaPrikaziKandidate extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonObrisi;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableKandidati;
     // End of variables declaration//GEN-END:variables
+
+    public void addBtnObrisiActionListener(ActionListener actionListener) {
+        jButtonObrisi.addActionListener(actionListener);
+    }
 }

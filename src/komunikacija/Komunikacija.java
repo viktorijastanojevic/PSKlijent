@@ -80,4 +80,18 @@ Zahtev zahtev = new Zahtev(Operacije.UCITAJ_KANDIDATE, null);
             throw odgovor.getGreska();
         }
     }
+
+    public void obrisiKandidata(Kandidat k) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacije.OBRISI_KANDIDATA, k);
+        System.out.println(zahtev);
+        posiljalac.posalji(zahtev);
+
+        Odgovor odgovor = (Odgovor) primalac.primi();
+        System.out.println(odgovor);
+        if (odgovor.getGreska() == null) {
+            return;
+        } else {
+            throw odgovor.getGreska();
+        }
+    }
 }

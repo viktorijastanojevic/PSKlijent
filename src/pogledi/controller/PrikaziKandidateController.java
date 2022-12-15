@@ -5,11 +5,14 @@
 package pogledi.controller;
 
 import forme.FormaPrikaziKandidate;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
 import model.Kandidat;
+import pogledi.cordinator.Cordinator;
 import pogledi.forme.komponente.KandidatiModelTabele;
 
 /**
@@ -21,12 +24,10 @@ public class PrikaziKandidateController {
 
     public PrikaziKandidateController(FormaPrikaziKandidate frmPM) {
         this.frmPM = frmPM;
-       // addActionListener();
+        addActionListener();
     }
 
-    public PrikaziKandidateController() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
     
         
     public void otvoriFormu() {
@@ -43,7 +44,32 @@ public class PrikaziKandidateController {
         List<Kandidat> kandidati= new ArrayList<>();
         kandidati=Komunikacija.getInstanca().ucitajKandidate();
         KandidatiModelTabele kmt = new KandidatiModelTabele(kandidati);
-        frmPM.getjTable1().setModel(kmt);
+        frmPM.getjTableKandidati().setModel(kmt);
+    }
+
+    private void addActionListener() {
+        frmPM.addBtnObrisiActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = frmPM.getjTableKandidati().getSelectedRow();
+                if (red >= 0) {
+                    KandidatiModelTabele mmt = (KandidatiModelTabele) frmPM.getjTableKandidati().getModel();
+                    Kandidat k = mmt.getMusterijaAt(red);
+                    Cordinator.getInstanca().dodajParam("PozicijaKandidat", mmt.getMusterije().indexOf(k));
+                    Cordinator.getInstanca().dodajParam("Kandidat", k);
+                    try {
+                        Komunikacija.getInstanca().obrisiKandidata(k);
+                        mmt.obrisiMusteriju(red);
+                        frmPM.getjTableKandidati().setModel(mmt);
+                        JOptionPane.showMessageDialog(frmPM, "Sistem je obrisao kandidata", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+
+                    } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(frmPM, "Sistem ne moze da obrise kandidata", "Greska", JOptionPane.ERROR_MESSAGE);
+
+                    }
+                }
+            }
+        });
     }
     
 }
